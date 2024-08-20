@@ -13,12 +13,23 @@ import os
 from fastapi.staticfiles import StaticFiles
 
 
-
+# initialize
 app = FastAPI(
     title='Google Circularnet CFH server integration'
 )
 templates = Jinja2Templates(directory="templates")
 
+# check os and set current_ws
+if os.name == 'nt':
+    current_ws = os.getcwd().replace("\\",'/')
+else:
+    current_ws = os.getcwd()
+
+# create static folder if it doesn't exist
+if not os.path.isdir(os.path.join(current_ws,'static')):
+    os.mkdir('static')
+
+# mount static folder
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
