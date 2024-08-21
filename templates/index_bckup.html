@@ -3,69 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Circularnet CFH Server Integration</title>
+    <title>Google Circularnet CFH Server Integtation</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            font-family: 'Roboto', sans-serif;
-            color: #343a40;
-            padding: 20px;
+            background-color: #f8f9fa;
         }
         .container {
-            max-width: 800px; /* Increased max-width for a larger layout */
-            padding: 40px; /* Increased padding for more spacing */
+            max-width: 600px;
+            padding: 20px;
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-        }
-        h1 {
-            font-size: 32px; /* Increased font size for the header */
-            font-weight: 700;
-            margin-bottom: 30px;
-            color: #007bff;
-            text-align: center;
-        }
-        .form-group label {
-            font-size: 18px; /* Increased font size for labels */
-            font-weight: 500;
-        }
-        .btn-primary {
-            font-size: 18px; /* Increased font size for the button */
-            padding: 12px 24px; /* Larger button size */
-            background-color: #007bff;
-            border-color: #007bff;
-            transition: background-color 0.3s ease;
-        }
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #004085;
-        }
-        #result {
-            margin-top: 30px;
-            text-align: center;
-        }
-        #result img {
-            max-width: 100%;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        #result {
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Upload an Image and Download Inference Result</h1>
+        <h1 class="text-center">Google Circularnet CFH Server Integtation</h1>
         <form id="upload-form" action="/upload/" method="post" enctype="multipart/form-data" onsubmit="uploadImage(event)">
             <div class="form-group">
                 <label for="file">Choose an image:</label>
                 <input type="file" id="file" name="file" class="form-control-file" required>
             </div>
-            <button type="submit" id="submit-button" class="btn btn-primary btn-block">Process</button>
+            <button type="submit" id="submit-button" class="btn btn-primary">Process</button>
         </form>
 
         <div id="result">
