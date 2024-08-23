@@ -73,11 +73,3 @@ async def upload_image(file: UploadFile = File(...)):
         raise HTTPException(status_code=500, detail=f"Image processing failed: {str(e)}")
 
 
-@app.get("/download/{filename}")
-async def download_file(filename: str):
-    file_path = os.path.join(filename)
-    if os.path.exists(file_path):
-        return FileResponse(path=file_path, filename=filename, media_type='image/png')
-    raise HTTPException(status_code=404, detail="File not found")
-
-
