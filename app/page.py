@@ -7,10 +7,12 @@ import aiohttp
 from PIL import Image
 import numpy as np
 from fastapi import FastAPI, Response,File
-from service import inference_modified_debugging
+# from service import inference_modified_debugging
 import os
 
 from fastapi.staticfiles import StaticFiles
+
+app = FastAPI()
 
 
 
@@ -18,14 +20,13 @@ app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
-app.mount("/css", StaticFiles(directory="templates/css"), name="css")
-app.mount("/js", StaticFiles(directory="templates/js"), name="js")
 
-app.mount("/sources", StaticFiles(directory="sources"), name="sources")
+
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root():
     return templates.TemplateResponse("index.html", {"request": {}})
+
 
 
 @app.post("/upload/")
@@ -44,23 +45,21 @@ async def upload_image(file: UploadFile = File(...)):
         if len(image_array.shape) == 3:  # 3D but no batch dimension
             image_array = np.expand_dims(image_array, axis=0)  # Add batch dimension
 
-        final_result, image_np_cp = inference_modified_debugging.main.inference(np_img=image_array, is_display=True)
+        # final_result, image_np_cp = inference_modified_debugging.main.inference(np_img=image_array, is_display=True)
 
         print('\nfinal result is \n')
-        print(final_result)
+        # print(final_result)
 
         image_np_cp = np.squeeze(image_np_cp)
         image_pil = Image.fromarray(image_np_cp)
 
 
         # Save the final image
-        final_image_path = "static/final_image.png"
-        image_pil.save(final_image_path)
+        # final_image_path = "static/final_image.png"
+        # image_pil.save(final_image_path)
 
         return {"filename": final_image_path}
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Image processing failed: {str(e)}")
-
-
 

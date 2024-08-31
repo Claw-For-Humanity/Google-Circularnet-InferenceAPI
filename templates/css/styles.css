@@ -1,0 +1,103 @@
+@charset "UTF-8";
+header {      
+    background-color: #343a40; /* Fallback color in case the image doesn't load */
+    /* background-image: url('https://static.wixstatic.com/media/6fed05_d3047475a15547b1b24b3ca05f5b7721~mv2.png/v1/fill/w_600,h_316,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/6fed05_d3047475a15547b1b24b3ca05f5b7721~mv2.png');  */
+    background-size: cover; 
+    background-position: top;
+    background-repeat: no-repeat; /* Ensures the image doesn't repeat */
+    height: 0px;  
+    padding: 20px; 
+    display: flex;
+    align-items: top;
+    justify-content: top;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: radial-gradient(circle, rgb(106, 187, 237), rgb(255, 123, 123));
+    background-size: 150% 150%; /* Adjust size for smooth movement */
+    animation: radialGradientAnimation 10s ease infinite;
+    font-family: 'Roboto', sans-serif;
+    color: #343a40;
+    padding: 20px;
+}
+
+@keyframes radialGradientAnimation {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+
+/* body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, rgb(106, 187, 237), rgb(255, 255, 255));
+    background-size: 200% 200%; 
+    animation: gradientAnimation 10s ease infinite;
+    font-family: 'Roboto', sans-serif;
+    color: #343a40;
+    padding: 20px;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+} */
+
+.container {
+    max-width: 800px; /* Increased max-width for a larger layout */
+    padding: 40px; /* Increased padding for more spacing */
+    /* background: rgb(106, 187, 237); */
+    border-radius: 10px;
+    /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); */
+}
+h1 {
+    font-size: 32px; /* Increased font size for the header */
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: rgb(37, 58, 71);
+    text-align: center;
+}
+.form-group label {
+    font-size: 18px; /* Increased font size for labels */
+    font-weight: 500;
+}
+.btn-primary {
+    font-size: 18px; /* Increased font size for the button */
+
+    padding: 12px 24px; /* Larger button size */
+    background-color: rgb(37, 58, 71); /* cfh main - rgb(106, 187, 237); */
+    border-color: rgb(37, 58, 71); /* cfh writing - rgb(37, 58, 71) */
+    transition: background-color 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: rgb(50, 78, 95);
+    border-color: rgb(37, 58, 71);
+}
+#result {
+    margin-top: 30px;
+    text-align: center;
+}
+#result img {
+    max-width: 100%;
+    border-radius: 3px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+}
