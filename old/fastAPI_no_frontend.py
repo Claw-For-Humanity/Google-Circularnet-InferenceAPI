@@ -9,7 +9,6 @@ from service import inference_modified_debugging
 
 app = FastAPI()
 
-
 stored_image_np_cp = None
 
 class PredictionResult(BaseModel):
