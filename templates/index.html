@@ -5,10 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/styles.css">
-    <title>Claw For Humanity | Revolutionize Recycling</title>
+    <link rel="stylesheet" href="./scss/style.css">
+    <title>CFH Lab</title>
 </head>
 <body>
+    <ul class="hList">
+        <li>
+          <a href="#click" class="menu">
+            <h2 class="menu-title">animals</h2>
+            <ul class="menu-dropdown">
+              <li>cat</li>
+              <li>dog</li>
+              <li>horse</li>
+              <li>cow</li>
+              <li>pig</li>
+            </ul>
+          </a>
+        </li>
+        <li>
+          <a href="#click" class="menu">
+            <h2 class="menu-title menu-title_2nd">names</h2>
+            <ul class="menu-dropdown">
+              <li>Kevin</li>
+              <li>Jim</li>
+              <li>Andy</li>
+            </ul>
+          </a>
+        </li>
+        <li>
+          <a href="#click" class="menu">
+            <h2 class="menu-title menu-title_3rd">things</h2>
+            <ul class="menu-dropdown">
+              <li>bench</li>
+              <li>pizza</li>
+              <li>Honda CB125</li>
+              <li>space</li>
+              <li>black matter</li>
+              <li>apple</li>
+              <li>philodendron</li>
+              <li>liver</li>
+              <li>brass</li>
+            </ul>
+          </a>
+        </li>
+        <li>
+          <a href="#click" class="menu">
+            <h2 class="menu-title menu-title_4th">Movies</h2>
+            <ul class="menu-dropdown">
+              <li>Godzilla</li>
+              <li>Man on Wire</li>
+              <li>Spirited Away</li>
+              <li>Interstellar</li>
+            </ul>
+          </a>
+        </li>
+      </ul>  
+      
+    
+
+    <!-- <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#news">News</a>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="toggleDropdown()">Dropdown
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content" id="myDropdown">
+                <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+            </div> 
+        </div>
+    </div> -->
+
+
     <div class="container">
         <h1>Upload an Image and View Detected Objects</h1>
         <form id="upload-form" action="/upload/" method="post" enctype="multipart/form-data" onsubmit="uploadImage(event)">
