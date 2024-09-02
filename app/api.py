@@ -24,9 +24,12 @@ app.mount("/js", StaticFiles(directory="templates/js"), name="js")
 app.mount("/sources", StaticFiles(directory="sources"), name="sources")
 
 @app.get("/", response_class=HTMLResponse)
-async def read_root():
-    return templates.TemplateResponse("index.html", {"request": {}})
+async def home():
+    return templates.TemplateResponse("home.html", {"request": {}})
 
+@app.get("/circularnet/", response_class=HTMLResponse)
+async def circularnet():
+    return templates.TemplateResponse("circularnet.html", {"request": {}})
 
 @app.post("/upload/")
 async def upload_image(file: UploadFile = File(...)):

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!--Font Awesome-->
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+  />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <title>CFH Lab</title>
+</head>
+<body>
+  <div class="wrapper">
+  
+    <a href="/" class="top"> </a>
+      
+    </div>
+    
+    <ul class="navigation">
+        <li><a href="/" title="Home">Home</a></li>
+        <li><a href="/circularnet" title="Circularnet">Circularnet</a></li>
+          <li><a href="" title="CancerCatcher">CancerCatcher</a></li>
+          <li><a href="" title="More">More</a>
+            <ul>
+              <li><a href="https://www.clawforhumanity.ca/" title="Main">CFH</a></li>
+              <li><a href="https://github.com/Claw-For-Humanity" title="Github">Github</a></li>
+              <!-- <li><a href="" title="Sources">Source</a></li>
+              <li><a href="" title="Privacy">Privacy</a></li> -->
+            </ul>
+          </li>
+          <div class="clear"></div>
+        </ul>
+
+
+    <div class="container">
+        <h1>Upload an Image and View Detected Objects</h1>
+        <form id="upload-form" action="/upload/" method="post" enctype="multipart/form-data" onsubmit="uploadImage(event)">
+            <div class="form-group">
+                <label for="file">Choose an image:</label>
+                <input type="file" id="file" name="file" class="form-control-file" required>
+            </div>
+            <button type="submit" id="submit-button" class="btn btn-primary btn-block">Process</button>
+        </form>
+        <div id="result"><link rel="stylesheet" href="../css/styles.css">
+        </div>
+    </div>
+
+    <div class="bottom">
+        <h1>© 2024 CLAWFORHUMANITY INC. Website Design by Eric Kang in 2023.</h1>
+    </div>
+
+
+
+    <script src="../js/script.js"></script>
+
+    
+</body>
+</html>
