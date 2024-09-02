@@ -1,4 +1,6 @@
 @charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,200,300,100,500,700,600,800,900);
+
 header {      
     background-color: #343a40; /* Fallback color in case the image doesn't load */
     /* background-image: url('https://static.wixstatic.com/media/6fed05_d3047475a15547b1b24b3ca05f5b7721~mv2.png/v1/fill/w_600,h_316,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/6fed05_d3047475a15547b1b24b3ca05f5b7721~mv2.png');  */
@@ -37,6 +39,7 @@ body {
 }
 
 
+/* THIS IS LINEAR GRADIENT */
 /* body {
     display: flex;
     justify-content: center;

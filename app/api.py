@@ -19,7 +19,6 @@ templates = Jinja2Templates(directory="templates")
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 app.mount("/css", StaticFiles(directory="templates/css"), name="css")
-app.mount("/scss", StaticFiles(directory="templates/scss"), name="scss")
 app.mount("/js", StaticFiles(directory="templates/js"), name="js")
 
 app.mount("/sources", StaticFiles(directory="sources"), name="sources")
