@@ -41,6 +41,8 @@
     <div class="container">
         <h1>Waste Identification Software</h1>
         <h2>Upload an Image and View Result!</h2>
+        <h3>proudly powered by <a href="https://blog.tensorflow.org/2022/10/circularnet-reducing-waste-with-machine.html" target="_blank"><img src="https://www.gstatic.com/tf_blog/images/ic_google.svg" alt="Logo" style="height: 20px; vertical-align: middle;"> | <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Tensorflow_logo.svg" alt="Logo" style="height: 20px; vertical-align: middle;"></a></h3>
+
         <form id="upload-form" action="/upload/" method="post" enctype="multipart/form-data" onsubmit="uploadImage(event)">
             <div class="form-group">
                 <label for="file">Choose an image:</label>
@@ -48,6 +50,7 @@
             </div>
             <button type="submit" id="submit-button" class="btn btn-primary btn-block">Process</button>
         </form>
+        
         <div id="result"><link rel="stylesheet" href="/circularnet/css/styles.css">
         </div>
     </div>

@@ -9,7 +9,7 @@ window.onload = function() {
             document.getElementById('overlay').style.display = 'none';
             document.body.style.overflow = 'auto'; // Restores scrolling
         }, 1000); // This duration should match the CSS transition duration
-    }, 2000); // Time before the overlay starts fading out
+    }, 400); // Time before the overlay starts fading out
 };
 
 

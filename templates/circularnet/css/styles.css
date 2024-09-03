@@ -25,7 +25,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: #343a40;
     padding: 20px;
-    animation: slideIn 2s ease forwards; /* Add animation */
+   
 }
 
 @keyframes radialGradientAnimation {
@@ -94,7 +94,6 @@ h1 {
 h2 {
     font-size: 18px;
     font-weight: 600;
-    margin-bottom: 30px;
     color: rgb(37, 58, 71);
     text-align: center;
     animation: slideIn 2s ease forwards; /* Add animation */
@@ -121,6 +120,15 @@ h2 {
 .btn-primary:hover {
     background-color: rgb(50, 78, 95);
 }
+h3{
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 50px;
+    color: rgb(37, 58, 71);
+    text-align: center;
+    animation: slideIn 2s ease forwards; /* Add animation */
+}
+
 #result {
     margin-top: 30px;
     text-align: center;
@@ -264,16 +272,19 @@ h2 {
   align-items: center;
   justify-content: center;
   z-index: 9999; /* Keeps the overlay on top */
+  animation: none; /* Add animation */
 }
 
 .message-image {
   max-width: 50%; /* Ensures the image scales nicely */
   height: auto;
+  animation: none;
 }
 
 .hidden {
   opacity: 0;
   transition: opacity 1s ease; /* Ensure the transition applies when hiding */
+  animation: none;
 }
 
 

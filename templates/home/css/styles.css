@@ -27,8 +27,6 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: #343a40;
     padding: 20px;
-    animation: slideIn 2s ease forwards; /* Add animation */
-    /* animation-delay: 2s; */
 }
 
 @keyframes radialGradientAnimation {
@@ -194,12 +192,16 @@ header {
     color: white;
     margin-bottom: 1rem;
     animation: slideIn 2s ease forwards; /* Add animation */
+    opacity: 0; /* Initially hidden */
+    animation-delay: 1.5s;
 }
 
 .paragraph {
     color: #ffffff;
     margin-bottom: 2.5rem;
     animation: slideIn 2s ease forwards; /* Add animation */
+    opacity: 0; /* Initially hidden */
+    animation-delay: 1.5s;
 }
 
 
@@ -230,7 +232,7 @@ header {
     margin-right: 2.5rem;
     opacity: 0; /* Initially hidden */
     animation: slideDown 1.5s ease forwards;
-    animation-delay: 1.7s; 
+    animation-delay: 2.7s; 
 }
 
 @keyframes slideDown {
@@ -259,6 +261,7 @@ header {
 }
 
 .blob-large {
+    animation-delay: 4s;
     animation: move-up 2s infinite alternate;
 }
 
@@ -268,6 +271,7 @@ header {
     left: -1rem;
     z-index: 10;
     animation: move-down 2s infinite alternate;
+    animation-delay: 4s;
 }
 
 .blob {
@@ -542,16 +546,19 @@ header {
   align-items: center;
   justify-content: center;
   z-index: 9999; /* Keeps the overlay on top */
+  animation: none;
 }
 
 .message-image {
   max-width: 50%; /* Ensures the image scales nicely */
   height: auto;
+  animation: none;
 }
 
 .hidden {
   opacity: 0;
   transition: opacity 2s ease; /* Ensure the transition applies when hiding */
+  animation: none;
 }
 
 

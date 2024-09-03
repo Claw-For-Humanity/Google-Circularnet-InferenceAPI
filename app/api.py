@@ -60,7 +60,7 @@ async def circularnet():
 
 @app.post("/upload/")
 async def upload_image(file: UploadFile = File(...)):
-    if not file.filename.endswith(('.png', '.jpg', '.jpeg')):
+    if not file.filename.endswith(('.png', '.jpg', '.jpeg','.PNG')):
         raise HTTPException(status_code=400, detail="Invalid file type")
 
     try:
