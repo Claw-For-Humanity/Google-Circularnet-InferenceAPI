@@ -8,6 +8,7 @@ from PIL import Image
 import numpy as np
 from fastapi import FastAPI, Response,File
 from service import inference_modified_debugging
+from archer import archer
 import os
 import datetime
 import random
@@ -38,6 +39,7 @@ def generate_name():
 
 # static
 app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static_ac", StaticFiles(directory="static_ac"), name="static_ac")
 
 # circularnet | js css
 app.mount("/circularnet/css", StaticFiles(directory="templates/circularnet/css"), name="cn-css")
@@ -46,6 +48,9 @@ app.mount("/circularnet/js", StaticFiles(directory="templates/circularnet/js"), 
 # home | js css
 app.mount("/home/css", StaticFiles(directory="templates/home/css"), name="home-css")
 app.mount("/home/js", StaticFiles(directory="templates/home/js"), name="home-js")
+
+app.mount("/archer/css", StaticFiles(directory="templates/archer/css"), name="archer-css")
+app.mount("/archer/js", StaticFiles(directory="templates/archer/js"), name="archer-js")
 
 
 app.mount("/sources", StaticFiles(directory="sources"), name="sources")
@@ -57,6 +62,10 @@ async def home():
 @app.get("/circularnet/", response_class=HTMLResponse)
 async def circularnet():
     return templates.TemplateResponse("/circularnet/circularnet.html", {"request": {}})
+
+@app.get("/archer/", response_class=HTMLResponse)
+async def circularnet():
+    return templates.TemplateResponse("/archer/archer.html", {"request": {}})
 
 @app.post("/upload/")
 async def upload_image(file: UploadFile = File(...)):
@@ -93,5 +102,46 @@ async def upload_image(file: UploadFile = File(...)):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Image processing failed: {str(e)}")
 
+
+@app.post("/upload_ac/")
+async def upload_img(file: UploadFile = File(...)):
+    if not file.filename.endswith(('.png', '.jpg', '.jpeg','.PNG')):
+        raise HTTPException(status_code=400, detail="Invalid file type")
+
+    try:
+        # Remove background
+        image = await file.read()
+        image = Image.open(io.BytesIO(image))
+        image_array = np.array(image)  # Transform into np array
+        print('image opened\n')
+
+        # if len(image_array.shape) == 2:  # Grayscale image
+        #     image_array = np.expand_dims(image_array, axis=-1)  # Add channel dimension
+        # if len(image_array.shape) == 3:  # 3D but no batch dimension
+        #     image_array = np.expand_dims(image_array, axis=0)  # Add batch dimension
+
+        image_np, final_result = archer.inference(image_array)
+
+        # inference
+        # final_result, image_np_cp = inference_modified_debugging.main.inference(np_img=image_array, is_display=True)
+        
+
+        
+        holder = generate_name()
+        print('\nfinal result is \n')
+        print(final_result)
+
+        image_np_cp = np.squeeze(image_np)
+        image_pil = Image.fromarray(image_np_cp)
+
+
+        # Save the final image
+        final_image_path = f"static/{holder}.png"
+        image_pil.save(final_image_path)
+
+        return {"filename": final_image_path}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Image processing failed: {str(e)}")
 
 
