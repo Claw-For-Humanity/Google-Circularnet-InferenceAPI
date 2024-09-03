@@ -17,19 +17,27 @@ from fastapi.staticfiles import StaticFiles
 app = FastAPI()
 templates = Jinja2Templates(directory="templates") 
 
+# static
 app.mount("/static", StaticFiles(directory="static"), name="static")
-app.mount("/css", StaticFiles(directory="templates/css"), name="css")
-app.mount("/js", StaticFiles(directory="templates/js"), name="js")
+
+# circularnet | js css
+app.mount("/circularnet/css", StaticFiles(directory="templates/circularnet/css"), name="cn-css")
+app.mount("/circularnet/js", StaticFiles(directory="templates/circularnet/js"), name="cn-js")
+
+# home | js css
+app.mount("/home/css", StaticFiles(directory="templates/home/css"), name="home-css")
+app.mount("/home/js", StaticFiles(directory="templates/home/js"), name="home-js")
+
 
 app.mount("/sources", StaticFiles(directory="sources"), name="sources")
 
 @app.get("/", response_class=HTMLResponse)
 async def home():
-    return templates.TemplateResponse("home.html", {"request": {}})
+    return templates.TemplateResponse("/home/home.html", {"request": {}})
 
 @app.get("/circularnet/", response_class=HTMLResponse)
 async def circularnet():
-    return templates.TemplateResponse("circularnet.html", {"request": {}})
+    return templates.TemplateResponse("/circularnet/circularnet.html", {"request": {}})
 
 @app.post("/upload/")
 async def upload_image(file: UploadFile = File(...)):

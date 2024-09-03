@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,200,300,100,500,700,600,800,900);
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 
 header {      
     background-color: #343a40; /* Fallback color in case the image doesn't load */
@@ -21,9 +22,10 @@ body {
     background: radial-gradient(circle, rgb(106, 187, 237), rgb(255, 123, 123));
     background-size: 150% 150%; /* Adjust size for smooth movement */
     animation: radialGradientAnimation 10s ease infinite;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: #343a40;
     padding: 20px;
+    animation: slideIn 2s ease forwards; /* Add animation */
 }
 
 @keyframes radialGradientAnimation {
@@ -65,35 +67,59 @@ body {
     }
 } */
 
+
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(20px); /* Start 20px below */
+        opacity: 0; /* Fully transparent */
+    }
+    100% {
+        transform: translateY(0); /* End in original position */
+        opacity: 1; /* Fully visible */
+    }
+}
+
 .container {
     max-width: 800px; /* Increased max-width for a larger layout */
     padding: 40px; /* Increased padding for more spacing */
-    /* background: rgb(106, 187, 237); */
-    border-radius: 10px;
-    /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); */
 }
 h1 {
     font-size: 32px; /* Increased font size for the header */
     font-weight: 700;
+    color: rgb(37, 58, 71);
+    text-align: center;
+    animation: slideIn 2s ease forwards; /* Add animation */
+}
+h2 {
+    font-size: 18px;
+    font-weight: 600;
     margin-bottom: 30px;
     color: rgb(37, 58, 71);
     text-align: center;
+    animation: slideIn 2s ease forwards; /* Add animation */
 }
+
 .form-group label {
     font-size: 18px; /* Increased font size for labels */
     font-weight: 500;
+    color: rgb(37, 58, 71);
+    animation: slideIn 2s ease forwards; /* Add animation */
 }
 .btn-primary {
     font-size: 18px; /* Increased font size for the button */
 
     padding: 12px 24px; /* Larger button size */
     background-color: rgb(37, 58, 71); /* cfh main - rgb(106, 187, 237); */
-    border-color: rgb(37, 58, 71); /* cfh writing - rgb(37, 58, 71) */
+     /* cfh writing - rgb(37, 58, 71) */
+    border: none;
     transition: background-color 0.3s ease;
+    animation: slideIn 2s ease forwards; /* Add animation */
 }
+
+
 .btn-primary:hover {
     background-color: rgb(50, 78, 95);
-    border-color: rgb(37, 58, 71);
 }
 #result {
     margin-top: 30px;
@@ -126,7 +152,7 @@ h1 {
     
     width: 300px;
     height: 100px;
-    background-image: url('../sources/CFH_transparent.png');
+    background-image: url('/sources/CFH_transparent.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -164,7 +190,7 @@ h1 {
 @media (min-width: 769px) {
     .top{
         transform: translateX(0%);
-        left: 60px;
+        left: 30px;
     }
     .navigation {
         top: 37px; /* Adjust for larger screens, if needed */
@@ -223,6 +249,34 @@ h1 {
     border-radius: 0 0 5px 5px;
   }
 
+
+
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(106, 187, 237);
+  backdrop-filter: blur(5px); /* Applies the blur effect */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* Keeps the overlay on top */
+}
+
+.message-image {
+  max-width: 50%; /* Ensures the image scales nicely */
+  height: auto;
+}
+
+.hidden {
+  opacity: 0;
+  transition: opacity 1s ease; /* Ensure the transition applies when hiding */
+}
+
+
 .bottom {
     position: fixed;      /* Fix the position to the viewport */
     bottom: 15px;           /* Position it at the bottom */
@@ -234,7 +288,39 @@ h1 {
     box-sizing: border-box; /* Include padding in the total width/height */
 }
 
+
+
 .bottom h1 {
     font-size: 13px; /* Adjust as needed */
     margin: 0; /* Remove default margin */
 }
+
+
+/* restart button */
+@keyframes radialGradientAnimation {
+    0% {
+        background-position: 0%;
+    }
+    100% {
+        background-position: 100%;
+    }
+}
+
+.button-gradient {
+    background: radial-gradient(circle, #ff6a00, #ee0979);
+    background-size: 200% 200%;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    animation: radialGradientAnimation 5s ease infinite;
+    transition: transform 0.2s;
+}
+
+.button-gradient:hover {
+    transform: scale(1.05);
+}
+
+
+
