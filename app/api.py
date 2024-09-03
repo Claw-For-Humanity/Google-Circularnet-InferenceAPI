@@ -9,6 +9,8 @@ import numpy as np
 from fastapi import FastAPI, Response,File
 from service import inference_modified_debugging
 import os
+import datetime
+import random
 
 from fastapi.staticfiles import StaticFiles
 
@@ -16,6 +18,23 @@ from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates") 
+
+holder = None
+
+
+
+def generate_name():
+    # Get the current date in YYYYMMDD format
+    date_str = datetime.datetime.now().strftime("%Y%m%d")
+    
+    # Generate a random number (e.g., between 1000 and 9999)
+    random_number = random.randint(1000, 9999)
+    
+    # Combine date and random number
+    generated_name = f"{date_str}_{random_number}"
+    
+    return generated_name
+
 
 # static
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -55,8 +74,9 @@ async def upload_image(file: UploadFile = File(...)):
         if len(image_array.shape) == 3:  # 3D but no batch dimension
             image_array = np.expand_dims(image_array, axis=0)  # Add batch dimension
 
+        # inference
         final_result, image_np_cp = inference_modified_debugging.main.inference(np_img=image_array, is_display=True)
-
+        holder = generate_name()
         print('\nfinal result is \n')
         print(final_result)
 
@@ -65,7 +85,7 @@ async def upload_image(file: UploadFile = File(...)):
 
 
         # Save the final image
-        final_image_path = "static/final_image.png"
+        final_image_path = f"static/{holder}.png"
         image_pil.save(final_image_path)
 
         return {"filename": final_image_path}
