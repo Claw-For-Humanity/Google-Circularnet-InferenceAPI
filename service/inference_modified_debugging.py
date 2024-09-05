@@ -8,6 +8,9 @@
 # pip install scikit-learn
 # pip install webcolors
 # pip install tensorflow-object-detection-api
+# pip install click
+# pip install aiohttp
+# pip install python-multipart
 
 # also for the visualization utils (/home/{username}/.local/lib/python{version}/site-packages/object_detection/utils/visualization_utils.py):
 # 'display_str_heights = [font.getsize(ds)[1] for ds in display_str_list]'
@@ -19,6 +22,7 @@
 import time
 start_time = time.perf_counter()
 print('import beginning')
+
 
 from six.moves.urllib.request import urlopen
 from six import BytesIO
@@ -60,13 +64,7 @@ class bucket:
   current_ws = os.getcwd().replace("\\",'/')
 
   # Path to a sample image stored in the repo.
-  IMAGES_FOR_TEST = f'{current_ws}/sample_images/image_2.png'
-
-  IMAGES_FOR_TEST1 = f'{current_ws}/sample_images/image_3.jpg'
-
-  IMAGES_FOR_TEST2 = f'{current_ws}/sample_images/image_4.png'
-
-  IMAGES_FOR_TEST3 = f'{current_ws}/sample_images/image_2.png'
+  IMAGES_FOR_TEST = f'./sample_imgs/image_2.png'
 
 
 
@@ -298,6 +296,7 @@ class main:
           bucket.category_index,
           area_threshold
       )
+      print(f'final result is \n {final_result}')
 
       transformed_boxes = []
       for bb in final_result['detection_boxes'][0]:
@@ -335,18 +334,20 @@ class main:
       else:
         print('\nnothing detected\n')
         final_result, image_np_cp = None, None
-    
+    else:
+        print('\nnothing detected\n')
+        final_result, image_np_cp = None, None
 
     return final_result, image_np_cp
   
 
 # initialize
-# i = time.perf_counter()
+i = time.perf_counter()
 
 
-# img = main.load_img(bucket.IMAGES_FOR_TEST2)
+img = main.load_img(bucket.IMAGES_FOR_TEST)
 
-# final_result, image_np_cp = main.inference(img, is_display=False)
-# print(f'took {time.perf_counter()-i} s')
+final_result, image_np_cp = main.inference(img, is_display=False)
+print(f'took {time.perf_counter()-i} s')
 
-# print(f'{final_result}\n')
+print(f'{final_result}\n')

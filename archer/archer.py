@@ -7,7 +7,7 @@ import os
 
 model = load_model('./archer/model.h5')
 
-data_path = '/home/cfh/Desktop/ClawForHumanity/Google-Circularnet-Server-Integration/archer/Training'
+data_path = './archer/dataset'
 categories = os.listdir(data_path)
 labels = [i for i in range(len(categories))]
 

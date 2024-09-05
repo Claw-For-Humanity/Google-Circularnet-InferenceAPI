@@ -3,7 +3,6 @@ import io
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.templating import Jinja2Templates
-import aiohttp
 from PIL import Image
 import numpy as np
 from fastapi import FastAPI, Response,File
@@ -15,7 +14,17 @@ import random
 
 from fastapi.staticfiles import StaticFiles
 
+if not os.path.exists('./static'):
+    print(
+        '\n\nstatic does not exist. creating one\n\n'
+    )
+    os.mkdir('static')
 
+if not os.path.exists('./static_ac'):
+    print(
+        '\n\nstatic does not exist. creating one\n\n'
+    )
+    os.mkdir('static_ac')
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates") 
@@ -67,6 +76,8 @@ async def circularnet():
 async def circularnet():
     return templates.TemplateResponse("/archer/archer.html", {"request": {}})
 
+
+# circularnet
 @app.post("/upload/")
 async def upload_image(file: UploadFile = File(...)):
     if not file.filename.endswith(('.png', '.jpg', '.jpeg','.PNG')):
@@ -84,10 +95,14 @@ async def upload_image(file: UploadFile = File(...)):
             image_array = np.expand_dims(image_array, axis=0)  # Add batch dimension
 
         # inference
-        final_result, image_np_cp = inference_modified_debugging.main.inference(np_img=image_array, is_display=True)
+        cn_final_result, image_np_cp = inference_modified_debugging.main.inference(np_img=image_array, is_display=True)
+
+        if type(cn_final_result) == type(None):
+            image_np_cp = image_array
+
         holder = generate_name()
         print('\nfinal result is \n')
-        print(final_result)
+        print(cn_final_result)
 
         image_np_cp = np.squeeze(image_np_cp)
         image_pil = Image.fromarray(image_np_cp)
@@ -103,6 +118,8 @@ async def upload_image(file: UploadFile = File(...)):
         raise HTTPException(status_code=500, detail=f"Image processing failed: {str(e)}")
 
 
+
+# archer
 @app.post("/upload_ac/")
 async def upload_img(file: UploadFile = File(...)):
     if not file.filename.endswith(('.png', '.jpg', '.jpeg','.PNG')):
@@ -115,28 +132,19 @@ async def upload_img(file: UploadFile = File(...)):
         image_array = np.array(image)  # Transform into np array
         print('image opened\n')
 
-        # if len(image_array.shape) == 2:  # Grayscale image
-        #     image_array = np.expand_dims(image_array, axis=-1)  # Add channel dimension
-        # if len(image_array.shape) == 3:  # 3D but no batch dimension
-        #     image_array = np.expand_dims(image_array, axis=0)  # Add batch dimension
-
-        image_np, final_result = archer.inference(image_array)
-
         # inference
-        # final_result, image_np_cp = inference_modified_debugging.main.inference(np_img=image_array, is_display=True)
-        
+        image_np, ac_final_result = archer.inference(image_array)
 
-        
         holder = generate_name()
         print('\nfinal result is \n')
-        print(final_result)
+        print(ac_final_result)
 
         image_np_cp = np.squeeze(image_np)
         image_pil = Image.fromarray(image_np_cp)
 
 
         # Save the final image
-        final_image_path = f"static/{holder}.png"
+        final_image_path = f"static_ac/{holder}.png"
         image_pil.save(final_image_path)
 
         return {"filename": final_image_path}
