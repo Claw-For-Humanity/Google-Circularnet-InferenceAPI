@@ -32,7 +32,12 @@ async function uploadImage(event) {
                 <img src="/${filename}" alt="Processed Image" class="img-fluid" />
                 <button onclick="window.location.reload();" class="btn button-gradient mt-2">Restart!</button>
             `;
-        } else {
+        } 
+        else if (response.status === 400) {
+            console.error('Upload failed: format has to be .png, .jpg,or .jpeg', response.statusText);
+            resultDiv.innerHTML = `<p class="text-danger">Wrong format. Please upload a valid file.</p>`;
+        }
+        else {
             console.error('Upload failed', response.statusText);
             resultDiv.innerHTML = `<p class="text-danger">An error occurred. Please try again.</p>`;
         }
