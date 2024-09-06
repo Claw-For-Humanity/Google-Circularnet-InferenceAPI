@@ -30,6 +30,7 @@ app = FastAPI()
 templates = Jinja2Templates(directory="templates") 
 
 holder = None
+allowed_formats = ('.png', '.jpg', '.jpeg','.PNG', '.JPG', '.JPEG')
 
 
 
@@ -80,7 +81,7 @@ async def circularnet():
 # circularnet
 @app.post("/upload/")
 async def upload_image(file: UploadFile = File(...)):
-    if not file.filename.endswith(('.png', '.jpg', '.jpeg','.PNG')):
+    if not file.filename.endswith(allowed_formats):
         raise HTTPException(status_code=400, detail="Invalid file type")
 
     try:
@@ -122,7 +123,7 @@ async def upload_image(file: UploadFile = File(...)):
 # archer
 @app.post("/upload_ac/")
 async def upload_img(file: UploadFile = File(...)):
-    if not file.filename.endswith(('.png', '.jpg', '.jpeg','.PNG', '.JPG', '.JPEG')):
+    if not file.filename.endswith(allowed_formats):
         raise HTTPException(status_code=400, detail="Invalid file type")
 
     try:
