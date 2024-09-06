@@ -306,17 +306,6 @@ h3{
     margin: 0; /* Remove default margin */
 }
 
-
-/* restart button */
-@keyframes radialGradientAnimation {
-    0% {
-        background-position: 0%;
-    }
-    100% {
-        background-position: 100%;
-    }
-}
-
 .button-gradient {
     background: radial-gradient(circle, #ff6a00, #ee0979);
     background-size: 200% 200%;

@@ -122,7 +122,7 @@ async def upload_image(file: UploadFile = File(...)):
 # archer
 @app.post("/upload_ac/")
 async def upload_img(file: UploadFile = File(...)):
-    if not file.filename.endswith(('.png', '.jpg', '.jpeg','.PNG')):
+    if not file.filename.endswith(('.png', '.jpg', '.jpeg','.PNG', '.JPG', '.JPEG')):
         raise HTTPException(status_code=400, detail="Invalid file type")
 
     try:
