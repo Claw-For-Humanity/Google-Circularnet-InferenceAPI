@@ -274,6 +274,7 @@ class main:
 
     print('performing inference')
     s_i = time.perf_counter()
+    # actual inference here
     results = list(map(lambda model: main.perform_detection(model, image_np), bucket.detection_fns))
     print(f'inference took {time.perf_counter()-s_i}\n')
 
